@@ -1,12 +1,12 @@
-<%= simple_form_for(@url) do |f| %>
+<%= simple_form_for(@url, :html => {:class => "form-horizontal"}) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :link, :as => :string %> 
     <%= f.input :shortened %>
-    <%= f.input :link %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, "Shorten URL" %>
   </div>
 <% end %>

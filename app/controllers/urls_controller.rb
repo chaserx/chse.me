@@ -25,7 +25,10 @@ class UrlsController < ApplicationController
   # GET /urls/new.json
   def new
     @url = Url.new
-
+    if not params[:link].blank?
+      @url.link = params[:link]
+    end
+    @url.shortened = @url.shorten
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @url }
@@ -44,7 +47,7 @@ class UrlsController < ApplicationController
 
     respond_to do |format|
       if @url.save
-        format.html { redirect_to @url, notice: 'Url was successfully created.' }
+        format.html { redirect_to @url.link }
         format.json { render json: @url, status: :created, location: @url }
       else
         format.html { render action: "new" }

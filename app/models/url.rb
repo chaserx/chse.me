@@ -1,8 +1,6 @@
 class Url < ActiveRecord::Base
   attr_accessible :link, :shortened
 
-    before_create :shorten
-
     def shorten
         self.shortened = make_token
     end

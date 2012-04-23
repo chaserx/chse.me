@@ -1,4 +1,4 @@
-<h1>Listing URLs</h1>
+<h1>Listing URLs</h1> ( <%= link_to 'New Url', new_url_path %> )
 
 <table class="table table-striped table-bordered table-condensed">
   <tr>
@@ -11,8 +11,8 @@
 
 <% @urls.each do |url| %>
   <tr>
-    <td><%= url.shortened %></td>
-    <td><%= url.link %></td>
+    <td><%= link_to "http://chse.me/#{url.shortened}", "#{request.scheme}://#{request.host_with_port}/#{url.shortened}" %></td>
+    <td><%= link_to url.link, url.link %></td>
     <td><%= link_to 'Show', url %></td>
     <td><%= link_to 'Edit', edit_url_path(url) %></td>
     <td><%= link_to 'Destroy', url, confirm: 'Are you sure?', method: :delete %></td>
@@ -22,4 +22,4 @@
 
 <br />
 
-<%= link_to 'New Url', new_url_path %>
+

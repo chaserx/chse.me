@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418011736) do
+ActiveRecord::Schema.define(:version => 20120423022703) do
 
   create_table "urls", :force => true do |t|
-    t.string   "shortened"
-    t.string   "link"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.integer  "http_status", :default => 301
+    t.string   "shortened",                  :default => "",  :null => false
+    t.text     "link",        :limit => 255, :default => ""
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "http_status",                :default => 301
+    t.string   "title",                      :default => ""
   end
 
   add_index "urls", ["link"], :name => "index_urls_on_link"
