@@ -1,9 +1,22 @@
 ChseMe::Application.routes.draw do
+  get "content/index"
+
+  get "content/privacy"
+
+  get "content/terms"
+
+  get "content/about"
+
+  devise_for :users
+
   resources :urls
 
   match ':shortened' => 'urls#go' #added this line
 
-  root :to => "urls#index"
+  #root :to => "urls#index"
+
+
+  root :to => "content#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,8 +1,14 @@
 class UrlsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:show, :go]
+
   # GET /urls
   # GET /urls.json
   def index
-    @urls = Url.all
+    if signed_in?
+      @urls = current_user.urls.all
+    else
+      @urls = Url.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,7 +50,7 @@ class UrlsController < ApplicationController
   # POST /urls.json
   def create
     @url = Url.new(params[:url])
-
+    @url.user_id = current_user.id
     respond_to do |format|
       if @url.save
         format.html { redirect_to @url.link }
@@ -85,7 +91,8 @@ class UrlsController < ApplicationController
   end
 
   def go
-    @link = Url.find_by_shortened!(params[:shortened])
-    redirect_to @link.link, :status => @link.http_status
+    @u = Url.find_by_shortened!(params[:shortened])
+    redirect_to @u.link, :status => @u.http_status
+    Url.increment_counter(:clicks, @u.id)
   end
 end

@@ -5,8 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 	<title>chse.me</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="description" content="a featureless url shortner">
+	<meta name="author" content="Chase Southard">
 
 	<meta name="viewport" content="width=device-width">
 
@@ -27,12 +27,40 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">chse.me</a>
+          <a class="brand" href="/">chse.me</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
+              <% if user_signed_in? %>
+                <%= nav_link "Howdy, #{current_user.email}", edit_user_registration_path %>
+                <%= nav_link 'Shortened URLs', urls_path %>  
+                <% if user_signed_in? && current_user.admin? %>
+                  <li class="dropdown">
+                  <a href="#"
+                        class="dropdown-toggle"
+                        data-toggle="dropdown">
+                        Advanced
+                        <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>Advanced Setting 1</li>
+                    <li>Advanced Setting 2</li>
+                  </ul>
+                </li>
+                <% end %>
+                <li>
+                <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+                </li>
+              <% else %>
+                <li>
+                <%= link_to('Login', new_user_session_path)  %>  
+                </li>
+                <li>
+                  <%= link_to('Sign up', new_user_registration_path)  %>  
+                </li>
+              <% end %>
+              <!-- <li class="active"><a href="#">Home</a></li>
               <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="#contact">Contact</a></li> -->
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -47,14 +75,12 @@
       		<%= yield %>
       	</div>
       </div>
-      <div class="row">
-        <div class="span12"><a class="bookmarklet" href="javascript:location.href='http://localhost:3000/urls/new?link='+encodeURIComponent(location.href)+'&
-title='+encodeURIComponent(document.title)">shorten link bookmarklet</a></div>
-        </div>
+      
       <hr>
 
       <footer>
-        <p>&copy; Company 2012</p>
+        <p>&copy; Chase Southard 2012<br />
+        <%= link_to "privacy", content_privacy_path %> | <%= link_to "terms", content_terms_path %> | <%= link_to "about", content_about_path %></p>
       </footer>
 
     </div> <!-- /container -->

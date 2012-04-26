@@ -3,10 +3,10 @@
 
   <div class="form-inputs">
     <%= f.input :link, :as => :string %> 
-    <%= f.input :shortened %>
+    <%= f.input :shortened, :label => "chse.me/", :hint => clippy("http://chse.me/#{@url.shortened}").html_safe %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Shorten URL" %>
+    <%= f.button :submit, "Shorten URL & Return" %>
   </div>
 <% end %>
