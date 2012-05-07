@@ -15,6 +15,10 @@ end
 
 gem 'devise'
 
+gem 'mail'
+#gem 'postmark-rails', '>=0.4.1'
+gem 'simple_postmark'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
