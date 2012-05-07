@@ -1,9 +1,9 @@
 module UrlsHelper
 
-	def clippy(text, bgcolor='#FFFFFF')
+	def clippy(text, options = {:bgcolor => '#FFFFFF', :show_text => "Copy URL"})
 
 	  html = <<-EOF
-	  	Copy URL&nbsp;
+	  	#{options[:show_text]}&nbsp;
 	    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
 	            width="110"
 	            height="14"
@@ -13,7 +13,7 @@ module UrlsHelper
 	    <param name="quality" value="high" />
 	    <param name="scale" value="noscale" />
 	    <param NAME="FlashVars" value="text=#{text}">
-	    <param name="bgcolor" value="#{bgcolor}">
+	    <param name="bgcolor" value="#{options[:bgcolor]}">
 	    <embed src="/flash/clippy.swf"
 	           width="110"
 	           height="14"
@@ -23,7 +23,7 @@ module UrlsHelper
 	           type="application/x-shockwave-flash"
 	           pluginspage="http://www.macromedia.com/go/getflashplayer"
 	           FlashVars="text=#{text}"
-	           bgcolor="#{bgcolor}"
+	           bgcolor="#{options[:bgcolor]}"
 	    />
 	    </object>
 	  EOF

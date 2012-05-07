@@ -31,7 +31,7 @@
           <div class="nav-collapse">
             <ul class="nav">
               <% if user_signed_in? %>
-                <%= nav_link "Howdy, #{current_user.email}", edit_user_registration_path %>
+                <%= nav_link "Howdy, #{current_user.username}", edit_user_registration_path %>
                 <%= nav_link 'Shortened URLs', urls_path %>  
                 <% if user_signed_in? && current_user.admin? %>
                   <li class="dropdown">
@@ -89,7 +89,7 @@
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
 
 <script>
-	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+	var _gaq=[['_setAccount','UA-287272-9'],['_trackPageview']];
 	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
 	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 	s.parentNode.insertBefore(g,s)}(document,'script'));
