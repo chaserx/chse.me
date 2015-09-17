@@ -67,9 +67,9 @@ ChseMe::Application.configure do
 
   config.cache_store = :dalli_store
 
-  
+
   config.action_mailer.default_url_options = { :host => 'chse.me' }
   config.action_mailer.delivery_method = :simple_postmark
-  config.action_mailer.simple_postmark_settings = { api_key: '***REMOVED***' }
+  config.action_mailer.simple_postmark_settings = { api_key: ENV['postmark_key'] }
   config.action_mailer.raise_delivery_errors = false
 end
