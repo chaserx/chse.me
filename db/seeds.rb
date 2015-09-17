@@ -8,15 +8,14 @@
 
 if User.count < 1
 	puts "seeding users"
-	User.create( 
-	  :username						=> 'chase',
-	  :email                		=> 'chase.southard@gmail.com', 
-	  :password   					=> '5up3r_53cr3t',
-	  :password_confirmation        => '5up3r_53cr3t'
-	) 
+	User.create(
+	  :username	=> 'chase',
+	  :email => 'chase.southard@gmail.com',
+	  :password => '5up3r_53cr3t',
+	  :password_confirmation => '5up3r_53cr3t'
+	)
 
 	User.first.update_attribute(:admin, true)
-
 else
 	puts "already seeded"
 end
